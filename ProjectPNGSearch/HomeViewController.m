@@ -77,14 +77,39 @@
         NSTextFieldCell *textCell = cell;
         [textCell setTitle:data];
     }
-//    else if ([identifier isEqualToString:@"id"])
-//    {
-//        NSTextFieldCell *textCell = cell;
-//        [textCell setTitle:data];
-//    }
+}
+
+//是否允许编辑当前所在行的数据
+- (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row{
+    return NO;
 }
 
 
+- (void)tableViewSelectionDidChange:(NSNotification *)notification{
+    NSInteger index = [self.pngTableview selectedRow];
 
+    
+    NSString *inputText = [_inputPath stringValue];
+    NSString *fileName = [_dataSource objectAtIndex:index];
+    
+    NSString *pngName;
+    
+    NSArray *filePathList = [fileName componentsSeparatedByString:@"/"];
+    if (filePathList) {
+        for (NSString *str in filePathList) {
+            if ([str containsString:@".png"]){
+                pngName = str;
+            }
+        }
+    }
+    
+    NSString *newString  = [fileName stringByReplacingOccurrencesOfString:pngName withString:@""];
+    
+    
+    NSString *path = [inputText stringByAppendingString:newString?:@""];
+    
+    [[NSWorkspace sharedWorkspace] openFile:path];
+    
+}
 
 @end
