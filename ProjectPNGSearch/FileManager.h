@@ -14,6 +14,6 @@
 
 
 //
--(NSMutableArray *)findProjectPNG:(NSURL *)projectPath;
+-(NSMutableArray *)findProjectPNG:(NSString *)projectPath;
 
 @end

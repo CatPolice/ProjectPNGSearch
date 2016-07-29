@@ -8,10 +8,13 @@
 
 #import "HomeViewController.h"
 #import "FileManager.h"
+#import "DJProgressHUD.h"
 
 @interface HomeViewController ()<NSTableViewDataSource,NSTableViewDelegate>
 {
     NSArray *_dataSource;
+    __weak IBOutlet NSTextField *_inputPath;
+    __weak IBOutlet NSTextField *_errorLable;
 }
 
 
@@ -25,8 +28,31 @@
     [super viewDidLoad];
     // Do view setup here.
     
-    _dataSource = [[FileManager sharedManager] findProjectPNG:[NSURL URLWithString:@"/Users/runlin/Desktop/testFile"]];
     
+    
+}
+/**
+ *  查找按钮点击
+ */
+- (IBAction)searchButtonAction:(id)sender {
+    NSString *inputText = [_inputPath stringValue];
+    if (inputText.length) {
+        [DJProgressHUD showStatus:@"查找中..." FromView:self.view];
+        _dataSource = [[FileManager sharedManager] findProjectPNG:inputText];
+        
+        if (_dataSource.count) {
+            [self.pngTableview reloadData];
+            
+            _errorLable.stringValue = ({
+                NSString *str1 = @"共查找到";
+                NSString *strNum = [NSString stringWithFormat:@"%zd",_dataSource.count];
+                NSString *str2 = @"张不合法的图片";
+                [NSString stringWithFormat:@"%@%@%@",str1,strNum,str2];
+            });
+        }
+        
+        [DJProgressHUD dismiss];
+    }
 }
 
 //返回表格的行数

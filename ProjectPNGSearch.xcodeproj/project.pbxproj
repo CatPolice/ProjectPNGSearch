@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B85A3CC41D4B490B00F96099 /* DJActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B85A3CBD1D4B490B00F96099 /* DJActivityIndicator.m */; settings = {ASSET_TAGS = (); }; };
+		B85A3CC51D4B490B00F96099 /* DJBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = B85A3CBF1D4B490B00F96099 /* DJBezierPath.m */; settings = {ASSET_TAGS = (); }; };
+		B85A3CC61D4B490B00F96099 /* DJProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B85A3CC11D4B490B00F96099 /* DJProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
+		B85A3CC71D4B490B00F96099 /* DJProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B85A3CC31D4B490B00F96099 /* DJProgressIndicator.m */; settings = {ASSET_TAGS = (); }; };
 		B85B546F1D49B25F0081F8B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B85B546E1D49B25F0081F8B9 /* AppDelegate.m */; };
 		B85B54721D49B25F0081F8B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B85B54711D49B25F0081F8B9 /* main.m */; };
 		B85B54741D49B25F0081F8B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B85B54731D49B25F0081F8B9 /* Assets.xcassets */; };
@@ -17,6 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B85A3CBC1D4B490B00F96099 /* DJActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJActivityIndicator.h; sourceTree = "<group>"; };
+		B85A3CBD1D4B490B00F96099 /* DJActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJActivityIndicator.m; sourceTree = "<group>"; };
+		B85A3CBE1D4B490B00F96099 /* DJBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJBezierPath.h; sourceTree = "<group>"; };
+		B85A3CBF1D4B490B00F96099 /* DJBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJBezierPath.m; sourceTree = "<group>"; };
+		B85A3CC01D4B490B00F96099 /* DJProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJProgressHUD.h; sourceTree = "<group>"; };
+		B85A3CC11D4B490B00F96099 /* DJProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJProgressHUD.m; sourceTree = "<group>"; };
+		B85A3CC21D4B490B00F96099 /* DJProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJProgressIndicator.h; sourceTree = "<group>"; };
+		B85A3CC31D4B490B00F96099 /* DJProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJProgressIndicator.m; sourceTree = "<group>"; };
 		B85B546A1D49B25F0081F8B9 /* ProjectPNGSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectPNGSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85B546D1D49B25F0081F8B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B85B546E1D49B25F0081F8B9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -42,6 +54,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B85A3CBB1D4B490B00F96099 /* DJProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				B85A3CBC1D4B490B00F96099 /* DJActivityIndicator.h */,
+				B85A3CBD1D4B490B00F96099 /* DJActivityIndicator.m */,
+				B85A3CBE1D4B490B00F96099 /* DJBezierPath.h */,
+				B85A3CBF1D4B490B00F96099 /* DJBezierPath.m */,
+				B85A3CC01D4B490B00F96099 /* DJProgressHUD.h */,
+				B85A3CC11D4B490B00F96099 /* DJProgressHUD.m */,
+				B85A3CC21D4B490B00F96099 /* DJProgressIndicator.h */,
+				B85A3CC31D4B490B00F96099 /* DJProgressIndicator.m */,
+			);
+			path = DJProgressHUD;
+			sourceTree = "<group>";
+		};
 		B85B54611D49B25F0081F8B9 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +95,7 @@
 				B85B54801D49DD950081F8B9 /* HomeViewController.xib */,
 				B85B54831D49DEA10081F8B9 /* FileManager.h */,
 				B85B54841D49DEA10081F8B9 /* FileManager.m */,
+				B85A3CBB1D4B490B00F96099 /* DJProgressHUD */,
 				B85B54731D49B25F0081F8B9 /* Assets.xcassets */,
 				B85B54751D49B25F0081F8B9 /* MainMenu.xib */,
 				B85B54781D49B25F0081F8B9 /* Info.plist */,
@@ -154,6 +182,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B85A3CC71D4B490B00F96099 /* DJProgressIndicator.m in Sources */,
+				B85A3CC61D4B490B00F96099 /* DJProgressHUD.m in Sources */,
+				B85A3CC41D4B490B00F96099 /* DJActivityIndicator.m in Sources */,
+				B85A3CC51D4B490B00F96099 /* DJBezierPath.m in Sources */,
 				B85B54721D49B25F0081F8B9 /* main.m in Sources */,
 				B85B546F1D49B25F0081F8B9 /* AppDelegate.m in Sources */,
 				B85B54811D49DD950081F8B9 /* HomeViewController.m in Sources */,
@@ -297,6 +329,7 @@
 				B85B547D1D49B25F0081F8B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

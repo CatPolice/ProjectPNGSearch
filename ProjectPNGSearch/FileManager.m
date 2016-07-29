@@ -33,32 +33,29 @@
 }
 
 
--(NSMutableArray *)findProjectPNG:(NSURL *)projectPath{
+-(NSMutableArray *)findProjectPNG:(NSString *)projectPath{
     
-    NSURL *url = projectPath;
+    NSURL *url = [NSURL URLWithString:[projectPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
     
     NSError *error = nil;
     NSMutableArray *illegalList = [[NSMutableArray alloc] init];
     
-    NSArray *contents = [_fileManager contentsOfDirectoryAtURL:url
-                                   includingPropertiesForKeys:@[]
-                                                      options:NSDirectoryEnumerationSkipsHiddenFiles
-                                                        error:&error];
+//    NSArray *contents = [_fileManager contentsOfDirectoryAtURL:url
+//                                   includingPropertiesForKeys:@[]
+//                                                      options:NSDirectoryEnumerationSkipsHiddenFiles
+//                                                        error:&error];
+    
+    NSArray *contents = [_fileManager subpathsOfDirectoryAtPath:projectPath error:&error];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"pathExtension == 'png'"];
-    for (NSURL *fileURL in [contents filteredArrayUsingPredicate:predicate]) {
+    for (NSString *file in [contents filteredArrayUsingPredicate:predicate]) {
         // 在目录中枚举 .png 文件
         
-        //        NSLog(@"%@",fileURL);
-        
-        NSString *file = [NSString stringWithFormat:@"%@",fileURL];
-        
-        
-        //判断文件是否存在 @ 符号
-        if (![file containsString:@"@"]) {
+        //判断文件中是否包含.png的文件
+        if ([file containsString:@".png"] && ![file containsString:@"@2x.png"] && ![file containsString:@"@3x.png"]) {
+            NSArray *arrSeparation = [file componentsSeparatedByString:@".png"];
             
-            NSArray *arrSeparation = [file componentsSeparatedByString:@"/"];
-            NSString *pngName = [[[arrSeparation lastObject] componentsSeparatedByString:@"."] firstObject];
+            NSString *pngName = [arrSeparation firstObject];
             
             NSString *filePath2x = ({
                 NSString *urlStr = [NSString stringWithFormat:@"%@",url];
@@ -67,28 +64,69 @@
             });
             
             
-            
             NSString *filePath3x = ({
                 NSString *urlStr = [NSString stringWithFormat:@"%@",url];
                 NSString *fileName3x = [NSString stringWithFormat:@"%@%@",pngName,@"@3x.png"];
                 [urlStr stringByAppendingPathComponent:fileName3x];
             });
             
+            //判断文件是否存在
+            BOOL result = [_fileManager fileExistsAtPath:filePath2x] && [_fileManager fileExistsAtPath:filePath3x];
+            
+            if (!result) {
+                NSLog(@"%@的文件不合法",file);
+                [illegalList addObject:[file stringByRemovingPercentEncoding]];
+            }
+        }else if ([file containsString:@"@2x.png"] || [file containsString:@"@3x.png"]){
+            NSString *filePath2x;
+            NSString *filePath3x;
+            
+            //如果2x的话，
+            if ([file containsString:@"@2x.png"]) {
+                NSArray *arrSeparation = [file componentsSeparatedByString:@"@2x.png"];
+                NSString *pngName = [arrSeparation firstObject];
+                
+                filePath2x = ({
+                    NSString *urlStr = [NSString stringWithFormat:@"%@",url];
+                    NSString *fileName2x = [NSString stringWithFormat:@"%@%@",pngName,@"@2x.png"];
+                    [urlStr stringByAppendingPathComponent:fileName2x];
+                });
+                
+                
+                filePath3x = ({
+                    NSString *urlStr = [NSString stringWithFormat:@"%@",url];
+                    NSString *fileName3x = [NSString stringWithFormat:@"%@%@",pngName,@"@3x.png"];
+                    [urlStr stringByAppendingPathComponent:fileName3x];
+                });
+                
+            }else if ([file containsString:@"@3x.png"]){
+                //如果3x的话
+                NSArray *arrSeparation = [file componentsSeparatedByString:@"@3x.png"];
+                NSString *pngName = [arrSeparation firstObject];
+                
+                filePath2x = ({
+                    NSString *urlStr = [NSString stringWithFormat:@"%@",url];
+                    NSString *fileName2x = [NSString stringWithFormat:@"%@%@",pngName,@"@2x.png"];
+                    [urlStr stringByAppendingPathComponent:fileName2x];
+                });
+                
+                
+                filePath3x = ({
+                    NSString *urlStr = [NSString stringWithFormat:@"%@",url];
+                    NSString *fileName3x = [NSString stringWithFormat:@"%@%@",pngName,@"@3x.png"];
+                    [urlStr stringByAppendingPathComponent:fileName3x];
+                });
+            }
             
             //判断文件是否存在
             BOOL result = [_fileManager fileExistsAtPath:filePath2x] && [_fileManager fileExistsAtPath:filePath3x];
             
             if (!result) {
                 NSLog(@"%@的文件不合法",file);
-                [illegalList addObject:file];
+                [illegalList addObject:[file stringByRemovingPercentEncoding]];
             }
         }
-        //判断文件是否存在 @2x 符号
-        
-        //判断文件是否存在 @3x 符号
     }
-    
-    
     return illegalList;
 }
 
