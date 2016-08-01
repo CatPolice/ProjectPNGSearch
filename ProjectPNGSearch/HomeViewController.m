@@ -27,10 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
-    
-    
-    
 }
+
+- (void)awakeFromNib{
+    [self.pngTableview setTarget:self];
+    [self.pngTableview setDoubleAction:NSSelectorFromString(@"tableviewDoubleClick:")];
+}
+
+
 /**
  *  查找按钮点击
  */
@@ -85,31 +89,18 @@
 }
 
 
-- (void)tableViewSelectionDidChange:(NSNotification *)notification{
-    NSInteger index = [self.pngTableview selectedRow];
-
+- (void)tableviewDoubleClick:(id)sender
+{
+    NSInteger index = [self.pngTableview clickedRow];
     
     NSString *inputText = [_inputPath stringValue];
     NSString *fileName = [_dataSource objectAtIndex:index];
     
-    NSString *pngName;
+    NSString *str = [inputText stringByAppendingPathComponent:fileName];
+    NSString *newPath = [str stringByDeletingLastPathComponent];
     
-    NSArray *filePathList = [fileName componentsSeparatedByString:@"/"];
-    if (filePathList) {
-        for (NSString *str in filePathList) {
-            if ([str containsString:@".png"]){
-                pngName = str;
-            }
-        }
-    }
-    
-    NSString *newString  = [fileName stringByReplacingOccurrencesOfString:pngName withString:@""];
-    
-    
-    NSString *path = [inputText stringByAppendingString:newString?:@""];
-    
-    [[NSWorkspace sharedWorkspace] openFile:path];
-    
+    [[NSWorkspace sharedWorkspace] openFile:newPath];
 }
+
 
 @end
