@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="_errorLable" destination="Ycd-ML-wwv" id="9bS-CQ-Mx4"/>
                 <outlet property="_inputPath" destination="lHv-LN-aeJ" id="TWy-sC-tD8"/>
+                <outlet property="checkBoxButtonOutlet" destination="tyk-IE-S66" id="po7-9i-ZW4"/>
                 <outlet property="pngTableview" destination="sd2-cK-3tr" id="toc-fk-n6B"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -26,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="yjn-rK-5PA" viewBased="YES" id="sd2-cK-3tr">
-                                <rect key="frame" x="0.0" y="0.0" width="848" height="488"/>
+                                <rect key="frame" x="0.0" y="0.0" width="848" height="482"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -68,7 +69,7 @@
                         <animations/>
                     </scroller>
                     <tableHeaderView key="headerView" id="yjn-rK-5PA">
-                        <rect key="frame" x="0.0" y="0.0" width="848" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="848" height="23"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </tableHeaderView>
@@ -76,7 +77,7 @@
                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHv-LN-aeJ">
                     <rect key="frame" x="5" y="541" width="715" height="22"/>
                     <animations/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="请输入项目的文件路径，例如 /Users/name/Desktop/projectFile" drawsBackground="YES" id="Pht-Z7-9qH">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="请输入项目的文件路径，例如 /Users/Name/Desktop/ProjectFile" drawsBackground="YES" id="Pht-Z7-9qH">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -101,6 +102,14 @@
                     <connections>
                         <action selector="searchButtonAction:" target="-2" id="mb7-UI-Qit"/>
                     </connections>
+                </button>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyk-IE-S66">
+                    <rect key="frame" x="751" y="513" width="61" height="18"/>
+                    <animations/>
+                    <buttonCell key="cell" type="check" title="3倍图" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hda-Ne-ArH">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
                 </button>
             </subviews>
             <animations/>

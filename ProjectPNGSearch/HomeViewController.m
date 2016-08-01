@@ -15,6 +15,8 @@
     NSArray *_dataSource;
     __weak IBOutlet NSTextField *_inputPath;
     __weak IBOutlet NSTextField *_errorLable;
+    
+    __weak IBOutlet NSButton *checkBoxButtonOutlet;
 }
 
 
@@ -42,7 +44,19 @@
     NSString *inputText = [_inputPath stringValue];
     if (inputText.length) {
         [DJProgressHUD showStatus:@"查找中..." FromView:self.view];
-        _dataSource = [[FileManager sharedManager] findProjectPNG:inputText];
+        
+        NSArray *temp;
+        
+        if (checkBoxButtonOutlet.state) {
+            temp = [NSArray arrayWithArray:[[FileManager sharedManager] findProjectPNGAll:inputText]];
+
+        }else{
+            temp = [NSArray arrayWithArray:[[FileManager sharedManager] findProjectPNG2x:inputText]];
+        }
+        
+        NSSet *set = [[NSSet alloc] initWithArray:temp];
+        _dataSource = [NSArray arrayWithArray:[set allObjects]];
+        
         
         if (_dataSource.count) {
             [self.pngTableview reloadData];

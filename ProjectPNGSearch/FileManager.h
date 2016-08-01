@@ -14,6 +14,8 @@
 
 
 //
--(NSMutableArray *)findProjectPNG:(NSString *)projectPath;
+-(NSMutableArray *)findProjectPNGAll:(NSString *)projectPath;
+
+-(NSMutableArray *)findProjectPNG2x:(NSString *)projectPath;
 
 @end
